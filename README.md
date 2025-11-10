@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # VarunaMarineServices
 =======
 # Fuel EU Maritime Compliance Platform
@@ -13,6 +12,24 @@ This platform implements the Fuel EU Maritime Regulation (EU) 2023/1805 complian
 - **Compliance Comparison**: Compare routes against baseline and target values
 - **Banking**: Manage compliance balance surplus (Article 20)
 - **Pooling**: Combine multiple ships' compliance balances (Article 21)
+
+### Routes Page
+![Routes](https://raw.githubusercontent.com/dipanshiTyagi/VarunaMarineServices
+/main/project%20screenshots/Routes.jpeg)
+
+### Compare Page
+![Compare](https://raw.githubusercontent.com/dipanshiTyagi/VarunaMarineServices
+/main/project%20screenshots/Compare.jpeg)
+
+### Banking Page
+![Banking](https://raw.githubusercontent.com/dipanshiTyagi/VarunaMarineServices
+/main/project%20screenshots/Banking.jpeg)
+
+### Pooling Page
+![Pooling](https://raw.githubusercontent.com/dipanshiTyagi/VarunaMarineServices
+/main/project%20screenshots/Pooling.jpeg)
+
+
 
 ## Architecture
 
