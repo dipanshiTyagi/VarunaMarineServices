@@ -1,0 +1,53 @@
+{
+  "name": "fueleu-maritime-backend",
+  "version": "1.0.0",
+  "description": "Fuel EU Maritime Compliance Platform - Backend API",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon src/infrastructure/server/server.ts",
+    "build": "tsc",
+    "start": "node dist/infrastructure/server/server.js",
+    "test": "jest",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "ts-node prisma/seed.ts",
+    "prisma:studio": "prisma studio",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "keywords": [
+    "fuel-eu",
+    "maritime",
+    "compliance",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "prisma": "^5.7.1",
+    "@prisma/client": "^5.7.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.10.6",
+    "@types/jest": "^29.5.11",
+    "nodemon": "^3.0.2",
+    "eslint": "^8.56.0",
+    "prettier": "^3.1.1",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "ts-node-dev": "^2.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}
+

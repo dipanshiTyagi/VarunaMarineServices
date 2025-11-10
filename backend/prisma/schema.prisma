@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Route {
+  id               Int      @id @default(autoincrement())
+  routeId          String   @unique @map("route_id")
+  vesselType       String   @map("vessel_type")
+  fuelType         String   @map("fuel_type")
+  year             Int
+  ghgIntensity     Float    @map("ghg_intensity") // gCO₂e/MJ
+  fuelConsumption  Float    @map("fuel_consumption") // tonnes
+  distance         Float    // km
+  totalEmissions   Float    @map("total_emissions") // tonnes
+  isBaseline       Boolean  @default(false) @map("is_baseline")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  @@index([routeId])
+  @@index([year])
+  @@index([vesselType])
+  @@index([fuelType])
+  @@map("routes")
+}
+
+model ShipCompliance {
+  id        Int      @id @default(autoincrement())
+  shipId    String   @map("ship_id")
+  year      Int
+  cbGco2eq  Float    @map("cb_gco2eq") // Compliance Balance in gCO₂e
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([shipId])
+  @@index([year])
+  @@index([shipId, year])
+  @@map("ship_compliance")
+}
+
+model BankEntry {
+  id          Int      @id @default(autoincrement())
+  shipId      String   @map("ship_id")
+  year        Int
+  amountGco2eq Float   @map("amount_gco2eq") // banked amount in gCO₂e
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([shipId])
+  @@index([year])
+  @@index([shipId, year])
+  @@map("bank_entries")
+}
+
+model Pool {
+  id        Int           @id @default(autoincrement())
+  year      Int
+  createdAt DateTime      @default(now()) @map("created_at")
+  members   PoolMember[]
+
+  @@index([year])
+  @@map("pools")
+}
+
+model PoolMember {
+  id        Int      @id @default(autoincrement())
+  poolId    Int      @map("pool_id")
+  shipId    String   @map("ship_id")
+  cbBefore  Float    @map("cb_before")
+  cbAfter   Float    @map("cb_after")
+  createdAt DateTime @default(now()) @map("created_at")
+  pool      Pool     @relation(fields: [poolId], references: [id], onDelete: Cascade)
+
+  @@index([poolId])
+  @@index([shipId])
+  @@index([poolId, shipId])
+  @@map("pool_members")
+}
+
